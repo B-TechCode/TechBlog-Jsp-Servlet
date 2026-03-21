@@ -57,6 +57,7 @@ public class UpdatePostServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
             resp.sendRedirect("posts?error=server");
+            //This is testing
         }
     }
 }
