@@ -1,35 +1,38 @@
 # TechBlog – JSP & Servlet Based Blog Application
 
 TechBlog is a full-stack Java web application built using **JSP, Servlets, JDBC, and MySQL**.  
-It allows users to register, log in, create posts, like posts, comment, edit, and delete their own content.
+It allows users to register, log in, create posts, like posts, comment, and manage their content.
 
 ---
 
-##  Features
+## Features
 
-- User Registration & Login (Session-based authentication)
-- Create, Edit & Delete Blog Posts
-- Like / Unlike Posts (with count)
-- Comment System
-- Authorization (only author can edit/delete)
-- Responsive Navbar (Hamburger menu)
-- Clean MVC architecture
-- Maven-based project
-
----
-
-## Tech Stack
-
-- **Backend:** Java, JSP, Servlets, JDBC
-- **Frontend:** HTML, CSS
-- **Database:** MySQL
-- **Server:** Apache Tomcat 10
-- **Build Tool:** Maven
-- **IDE:** IntelliJ IDEA
+-  User Authentication (Register & Login)
+-  Create, Edit & Delete Blog Posts
+-  Like / Unlike Posts (with count)
+-  Comment System
+-  Authorization (only author can edit/delete)
+-  Dark Mode Toggle
+-  Sound Notification on Login
+-  Responsive Navbar (Mobile Friendly)
+-  Clean MVC Architecture
+-  Maven-based Project
+ 
 
 ---
 
-##  Project Structure
+## 🛠 Tech Stack
+
+- **Backend:** Java, JSP, Servlets, JDBC  
+- **Frontend:** HTML, CSS, Bootstrap  
+- **Database:** MySQL  
+- **Server:** Apache Tomcat 10  
+- **Build Tool:** Maven  
+- **IDE:** IntelliJ IDEA  
+
+---
+
+## Project Structure
 src/main/java
 └── com.techblog
 ├── dao
@@ -39,56 +42,50 @@ src/main/java
 
 src/main/webapp
 ├── css
+├── sounds
 ├── WEB-INF
 └── *.jsp
 
+
 ---
 
-##  Setup Instructions
+## Setup Instructions
 
-1. Clone the repository
+###  Clone the repository
 ```bash
 git clone https://github.com/YOUR_USERNAME/techblog-jsp-servlet.git
-Import as Maven Project in IntelliJ
-
-Configure MySQL Database
-
-Create database: techblog
-
-Update DB credentials in ConnectionProvider
-
-Deploy on Apache Tomcat 10
-
-Run and open:
-http://localhost:8080/techblog
-Authentication Flow
-
-Session-based login
-
-Unauthorized users cannot:
-
-Add posts
-
-Like or comment
 
 ---
 
-Edit/Delete others’ posts
+CREATE DATABASE techblog;
+
+Deploy on Server
+Use Apache Tomcat 10
+ Run the project
+http://localhost:8080/techblog
+
+---
+ Authentication Flow
+Session-based authentication
+
+Secure password storage using BCrypt
+Unauthorized users cannot:
+Create posts
+Like posts
+Comment
+
 Future Improvements
+ Pagination
+ Profile Image Upload
+ Rich Text Editor
+ AJAX (Like & Comment without reload)
+ JWT Authentication (Upgrade to Spring Boot)
 
-Pagination
 
-Profile image upload
-
-Rich text editor
-
-AJAX for likes & comments
-
-Author
+ Author
 
 Aakash Prasad Chaurasiya
-B.Tech CSE Student
-Java & Web Development Enthusiast
-
+ B.Tech CSE Student
+ Java & Web Development Enthusiast
 
 
