@@ -4,6 +4,7 @@ import com.techblog.dao.PostDao;
 import com.techblog.entities.Post;
 import com.techblog.entities.User;
 import com.techblog.helper.ConnectionProvider;
+import com.techblog.helper.ValidationUtil;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,7 +19,7 @@ public class AddPostServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        //  Get existing session (do NOT create new)
+        // 🔐 GET EXISTING SESSION (SECURE)
         HttpSession session = req.getSession(false);
 
         if (session == null) {
@@ -28,33 +29,36 @@ public class AddPostServlet extends HttpServlet {
 
         User user = (User) session.getAttribute("currentUser");
 
-        // Protect page
         if (user == null) {
             resp.sendRedirect("login.jsp");
             return;
         }
 
-        // Read form data
+        // 🔹 GET INPUT
         String title = req.getParameter("title");
         String content = req.getParameter("content");
 
-        // Validation
-        if (title == null || title.trim().isEmpty()
-                || content == null || content.trim().isEmpty()) {
-            resp.sendRedirect("add_post.jsp?error=empty");
+        // 🔐 CLEAN INPUT
+        title = title != null ? title.trim() : null;
+        content = content != null ? content.trim() : null;
+
+        // 🚨 INDUSTRY VALIDATION
+        if (!ValidationUtil.isValidText(title) ||
+                !ValidationUtil.isValidText(content)) {
+
+            resp.sendRedirect("add_post.jsp?error=invalid");
             return;
         }
 
-        // Create post object
+        // 🔹 CREATE POST
         Post post = new Post(title, content, user.getId());
 
-        // Save to DB
         PostDao dao = new PostDao(ConnectionProvider.getConnection());
 
-        if (dao.savePost(post)) {
+        boolean saved = dao.savePost(post);
 
-            // Redirect to View Posts (Timeline)
-            resp.sendRedirect("posts");
+        if (saved) {
+            resp.sendRedirect("posts"); // success
         } else {
             resp.sendRedirect("add_post.jsp?error=failed");
         }

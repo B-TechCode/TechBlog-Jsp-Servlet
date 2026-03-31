@@ -1,125 +1,97 @@
-/* ================= RESET ================= */
-* {
+/* ============================================
+   TECHBLOG - Industry Level CSS
+   File: src/main/webapp/css/style.css
+   ============================================ */
+
+/* ===== RESET & BASE ===== */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Segoe UI", Roboto, Arial, sans-serif;
 }
 
-/* ============ BODY =========== */
 body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: #f1f5f9;
+    color: #1e293b;
     min-height: 100vh;
-    background: linear-gradient(135deg, #eef2ff, #f8fafc);
 }
 
-/* ================= CENTERED PAGES ================= */
-.center-page {
-    min-height: calc(100vh - 70px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* ================= CARDS (login / profile / add post) ================= */
-.container,
-.auth-container {
-    background: #ffffff;
-    width: 460px;
-    padding: 50px 45px;
-    border-radius: 16px;
-    text-align: center;
-    box-shadow: 0 25px 55px rgba(0, 0, 0, 0.15);
-}
-
-/* ================= BUTTON ================= */
-.btn {
-    display: inline-block;
-    padding: 14px 34px;
-    background: linear-gradient(135deg, #2563eb, #3b82f6);
-    color: #fff;
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 10px;
+a {
     text-decoration: none;
-    transition: 0.3s;
+    color: inherit;
 }
 
-.btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 14px 30px rgba(37, 99, 235, 0.4);
-}
-
-/* ================= FORMS ================= */
-.auth-form input,
-.auth-form select,
-.auth-form textarea {
-    width: 100%;
-    padding: 14px 16px;
-    margin-bottom: 18px;
-    border-radius: 10px;
-    border: 1px solid #d1d5db;
-    font-size: 15px;
-}
-
-.auth-form textarea {
-    height: 110px;
-    resize: none;
-}
-
-.auth-form button {
-    width: 100%;
-    padding: 15px;
-    background: linear-gradient(135deg, #2563eb, #3b82f6);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 17px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-/* ================= NAVBAR ================= */
+/* ===== NAVBAR ===== */
 .navbar {
-    width: 100%;
-    height: 70px;
-    background: #000;                /* BLACK NAVBAR */
-    padding: 0 30px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     position: sticky;
     top: 0;
     z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0f172a;
+    padding: 0 32px;
+    height: 64px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
 }
 
 .nav-logo {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
-    color: white;
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+.nav-logo span {
+    color: #3b82f6;
 }
 
 .nav-links {
     display: flex;
     align-items: center;
+    gap: 8px;
 }
 
 .nav-links a {
-    color: white;
-    margin-left: 22px;
-    text-decoration: none;
-    font-weight: 600;
+    color: #cbd5e1;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: all 0.2s;
 }
 
-/* hamburger */
+.nav-links a:hover {
+    background: #1e293b;
+    color: #fff;
+}
+
+.nav-links a.active {
+    background: #1d4ed8;
+    color: #fff;
+}
+
+/* Hamburger */
 .menu-toggle {
     display: none;
-    font-size: 28px;
+    font-size: 22px;
     cursor: pointer;
-    color: white;
+    color: #fff;
+    padding: 6px;
+    border-radius: 6px;
+    transition: background 0.2s;
 }
 
-/* ================= MOBILE NAVBAR ================= */
+.menu-toggle:hover {
+    background: #1e293b;
+}
+
+/* ===== NAVBAR MOBILE ===== */
 @media (max-width: 768px) {
+    .navbar {
+        padding: 0 20px;
+    }
 
     .menu-toggle {
         display: block;
@@ -127,16 +99,23 @@ body {
 
     .nav-links {
         position: absolute;
-        top: 70px;
+        top: 64px;
         left: 0;
-        width: 100%;
-        background: #000;
+        right: 0;
+        background: #0f172a;
         flex-direction: column;
+        align-items: stretch;
+        gap: 0;
         display: none;
+        padding: 12px 16px 16px;
+        border-top: 1px solid #1e293b;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.3);
     }
 
     .nav-links a {
-        margin: 18px 0;
+        padding: 12px 16px;
+        font-size: 15px;
+        border-radius: 8px;
     }
 
     .nav-links.show {
@@ -144,114 +123,551 @@ body {
     }
 }
 
-/* ================= POSTS PAGE ================= */
+/* ===== AUTH PAGES (Login / Register) ===== */
+.center-page {
+    min-height: calc(100vh - 64px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+}
+
+.auth-card {
+    background: #fff;
+    width: 100%;
+    max-width: 420px;
+    border-radius: 16px;
+    padding: 40px 36px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+}
+
+.auth-card h2 {
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 6px;
+    color: #0f172a;
+}
+
+.auth-card .subtitle {
+    text-align: center;
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 28px;
+}
+
+.auth-card input,
+.auth-card select,
+.auth-card textarea {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #1e293b;
+    background: #f8fafc;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    display: block;
+}
+
+.auth-card input:focus,
+.auth-card select:focus,
+.auth-card textarea:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+    background: #fff;
+}
+
+.auth-card textarea {
+    height: 90px;
+    resize: none;
+}
+
+.auth-card select {
+    cursor: pointer;
+}
+
+.auth-btn {
+    width: 100%;
+    padding: 13px;
+    background: #2563eb;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    margin-top: 4px;
+}
+
+.auth-btn:hover {
+    background: #1d4ed8;
+}
+
+.auth-btn:active {
+    transform: scale(0.98);
+}
+
+.auth-switch {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 18px;
+    color: #64748b;
+}
+
+.auth-switch a {
+    color: #2563eb;
+    font-weight: 600;
+}
+
+.auth-switch a:hover {
+    text-decoration: underline;
+}
+
+/* ===== POSTS PAGE ===== */
 .page-container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 28px 16px;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
 }
 
 .page-title {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 700;
+    color: #0f172a;
 }
 
-/* POSTS GRID  */
-.posts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 25px;
+.no-posts {
+    text-align: center;
+    color: #64748b;
+    padding: 60px 0;
+    font-size: 16px;
 }
 
-/* ================= POST CARD ================= */
+/* ===== POST CARD ===== */
 .post-card {
-    background: white;
-    padding: 25px;
+    background: #fff;
     border-radius: 14px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid #e2e8f0;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.post-card h3 {
-    font-size: 22px;
-    margin-bottom: 8px;
+.post-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.post-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 6px;
+    line-height: 1.3;
 }
 
 .post-meta {
-    font-size: 14px;
-    color: #6b7280;
+    font-size: 13px;
+    color: #94a3b8;
     margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.post-meta strong {
+    color: #475569;
 }
 
 .post-content {
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.65;
+    margin-bottom: 18px;
 }
 
-/* ================= LIKE BUTTON ================= */
+/* ===== ACTION BUTTONS ===== */
+.post-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+}
+
+.post-actions form {
+    margin: 0;
+}
+
 .like-btn {
-    margin-top: 15px;
-    padding: 8px 18px;
-    border: none;
-    background: #ef4444;
-    color: white;
-    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #eff6ff;
+    color: #2563eb;
+    border: 1.5px solid #bfdbfe;
+    padding: 7px 16px;
+    border-radius: 999px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
 }
 
 .like-btn:hover {
-    background: #dc2626;
+    background: #dbeafe;
+    border-color: #93c5fd;
 }
 
+.like-btn.liked {
+    background: #2563eb;
+    color: #fff;
+    border-color: #2563eb;
+}
+
+.like-btn.animate {
+    animation: pop 0.25s ease;
+}
+
+@keyframes pop {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.18); }
+    100% { transform: scale(1); }
+}
+
+.delete-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1.5px solid #fecaca;
+    padding: 7px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.delete-btn:hover {
+    background: #fee2e2;
+    border-color: #fca5a5;
+}
+
+.edit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #f0fdf4;
+    color: #16a34a;
+    border: 1.5px solid #bbf7d0;
+    padding: 7px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.edit-btn:hover {
+    background: #dcfce7;
+    border-color: #86efac;
+}
+
+/* ===== COMMENTS ===== */
 .comment-section {
-    margin-top: 15px;
+    margin-top: 18px;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 16px;
 }
 
 .comment {
-    background: #f1f5f9;
-    padding: 6px 10px;
-    border-radius: 6px;
-    margin-bottom: 6px;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
     font-size: 14px;
+    animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.comment-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #2563eb;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.comment-body {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 8px 12px;
+    flex: 1;
+    line-height: 1.5;
+}
+
+.comment-body strong {
+    color: #0f172a;
+    font-size: 13px;
 }
 
 .comment-form {
     display: flex;
-    gap: 6px;
-    margin-top: 8px;
+    gap: 10px;
+    margin-top: 12px;
 }
 
 .comment-form input {
     flex: 1;
-    padding: 6px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
+    padding: 10px 14px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 999px;
+    font-size: 14px;
+    outline: none;
+    background: #f8fafc;
+    transition: border-color 0.2s;
+}
+
+.comment-form input:focus {
+    border-color: #3b82f6;
+    background: #fff;
 }
 
 .comment-form button {
-    padding: 6px 12px;
+    padding: 10px 20px;
     background: #2563eb;
-    color: white;
+    color: #fff;
     border: none;
-    border-radius: 6px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
     cursor: pointer;
-}
-.edit-btn {
-    display: inline-block;
-    margin-top: 8px;
-    padding: 6px 14px;
-    background: #2563eb;
-    color: white;
-    border-radius: 20px;
-    font-size: 14px;
-    text-decoration: none;
+    transition: background 0.2s;
+    white-space: nowrap;
 }
 
-.edit-btn:hover {
-    background: #1e40af;
+.comment-form button:hover {
+    background: #1d4ed8;
+}
+
+/* ===== ADD POST / EDIT POST ===== */
+.form-page {
+    max-width: 680px;
+    margin: 40px auto;
+    padding: 0 16px;
+}
+
+.form-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 36px 32px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    border: 1px solid #e2e8f0;
+}
+
+.form-card h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #0f172a;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 15px;
+    color: #1e293b;
+    background: #f8fafc;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+    background: #fff;
+}
+
+.form-group textarea {
+    height: 200px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.submit-btn {
+    padding: 13px 32px;
+    background: #2563eb;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.submit-btn:hover {
+    background: #1d4ed8;
+}
+
+.submit-btn:active {
+    transform: scale(0.98);
+}
+
+/* ===== PROFILE PAGE ===== */
+.profile-page {
+    max-width: 520px;
+    margin: 48px auto;
+    padding: 0 16px;
+}
+
+.profile-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px 32px;
+    text-align: center;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    border: 1px solid #e2e8f0;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: #fff;
+    font-size: 32px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+}
+
+.profile-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 6px;
+}
+
+.profile-email {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 16px;
+}
+
+.profile-about {
+    font-size: 14px;
+    color: #475569;
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 24px;
+    line-height: 1.5;
+    border: 1px solid #e2e8f0;
+}
+
+.profile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-primary {
+    display: block;
+    padding: 12px;
+    background: #2563eb;
+    color: #fff;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    transition: background 0.2s;
+}
+
+.btn-primary:hover { background: #1d4ed8; }
+
+.btn-secondary {
+    display: block;
+    padding: 12px;
+    background: #f1f5f9;
+    color: #374151;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    transition: background 0.2s;
+}
+
+.btn-secondary:hover { background: #e2e8f0; }
+
+.btn-danger {
+    display: block;
+    padding: 12px;
+    background: #fef2f2;
+    color: #dc2626;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    border: 1px solid #fecaca;
+    transition: background 0.2s;
+}
+
+.btn-danger:hover { background: #fee2e2; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+    .page-container  { padding: 20px 12px; }
+    .post-card       { padding: 18px; }
+    .form-card       { padding: 24px 20px; }
+    .profile-card    { padding: 28px 20px; }
+    .auth-card       { padding: 28px 24px; }
+    .post-title      { font-size: 17px; }
+    .comment-form    { flex-direction: column; }
+    .comment-form input { border-radius: 10px; }
+    .comment-form button { border-radius: 10px; }
 }

@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <%
     if (session.getAttribute("currentUser") != null) {
         response.sendRedirect("profile.jsp");
@@ -8,42 +10,82 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>User Registration | TechBlog</title>
-    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | TechBlog</title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
 
-<div class="center-page">
-    <div class="auth-container">
-        <h2>Create Account</h2>
+<!-- ✅ Navbar (GLOBAL TOGGLE HERE) -->
+<%@ include file="navbar.jsp" %>
 
-        <form action="register" method="post" class="auth-form">
+<!-- ===== PAGE WRAPPER ===== -->
+<div class="page-wrapper page-center">
 
-            <input type="text" name="user_name" placeholder="Full Name" required>
+    <!-- ===== REGISTER CARD ===== -->
+    <div class="card shadow auth-card p-4" style="width: 440px;">
 
-            <input type="email" name="user_email" placeholder="Email Address" required>
+        <h2 class="text-center mb-2">Create Account</h2>
+        <p class="text-center text-muted mb-4">Join TechBlog and start writing</p>
 
-            <input type="password" name="user_password" placeholder="Password" required>
+        <form action="register" method="post">
 
-            <select name="gender" required>
-                <option value="">Select Gender</option>
-                <option>Male</option>
-                <option>Female</option>
-                <option>Other</option>
-            </select>
+            <!-- Name -->
+            <div class="mb-3">
+                <input type="text" name="user_name" class="form-control"
+                       placeholder="Full name" required>
+            </div>
 
-            <textarea name="about" placeholder="Tell us about yourself"></textarea>
+            <!-- Email -->
+            <div class="mb-3">
+                <input type="email" name="user_email" class="form-control"
+                       placeholder="Email address" required>
+            </div>
 
-            <button type="submit">Register</button>
+            <!-- Password -->
+            <div class="mb-3">
+                <input type="password" name="user_password" class="form-control"
+                       placeholder="Password (min 6 characters)" required>
+            </div>
 
-            <p class="switch-link">
-                Already have an account?
-                <a href="login.jsp">Login</a>
-            </p>
+            <!-- Gender -->
+            <div class="mb-3">
+                <select name="gender" class="form-select" required>
+                    <option value="">Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <!-- Button -->
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">
+                    Create Account
+                </button>
+            </div>
 
         </form>
+
+        <!-- Login Link -->
+        <p class="text-center mt-3">
+            Already have an account?
+            <a href="login.jsp">Sign in</a>
+        </p>
+
     </div>
+
 </div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

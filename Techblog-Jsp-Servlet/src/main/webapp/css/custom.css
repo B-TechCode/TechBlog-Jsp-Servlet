@@ -1,0 +1,212 @@
+/* ===== REMOVE DEFAULT GAP ===== */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ================= PAGE LAYOUT ================= */
+.page-wrapper {
+    min-height: 100vh;
+    background: #f8f9fa;
+
+    /* ❌ REMOVE TOP GAP */
+    padding-top: 0;
+
+    padding-bottom: 40px;
+}
+
+.page-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-content {
+    max-width: 900px;
+    margin: auto;
+}
+
+/* ================= CARD ================= */
+.card {
+    transition: all 0.3s ease;
+    border-radius: 14px;
+}
+
+.card:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.auth-card {
+    padding: 30px 25px;
+}
+
+/* ================= BUTTON ================= */
+.btn {
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+/* ================= DARK MODE ================= */
+.dark-mode {
+    background-color: #0f172a !important;
+    color: #e2e8f0 !important;
+}
+
+.dark-mode html,
+.dark-mode body,
+.dark-mode .page-wrapper,
+.dark-mode .container {
+    background-color: #0f172a !important;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+    margin: 0 !important;
+    border-radius: 0;
+    align-items: center !important;
+}
+
+/* ===== FIX HAMBURGER BUTTON ===== */
+.navbar-toggler {
+    padding: 4px;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    border: 1px solid #475569;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none !important;
+}
+
+.navbar-toggler-icon {
+    width: 16px;
+    height: 16px;
+    background-size: 16px;
+}
+
+/* ================= CARD DARK ================= */
+.dark-mode .card,
+.dark-mode .auth-card,
+.dark-mode .post-card {
+    background-color: #1e293b !important;
+    color: #e2e8f0 !important;
+    border: 1px solid #334155;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+/* ================= TEXT ================= */
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5 {
+    color: #f8fafc !important;
+}
+
+.dark-mode p,
+.dark-mode span {
+    color: #cbd5f5 !important;
+}
+
+.dark-mode .text-muted,
+.dark-mode small {
+    color: #94a3b8 !important;
+}
+
+/* ================= INPUT ================= */
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select {
+    background-color: #1e293b !important;
+    color: #f8fafc !important;
+    border: 1px solid #475569 !important;
+}
+
+.dark-mode input::placeholder,
+.dark-mode textarea::placeholder {
+    color: #94a3b8;
+}
+
+.dark-mode input:focus,
+.dark-mode textarea:focus,
+.dark-mode select:focus {
+    border-color: #3b82f6;
+    box-shadow: none;
+}
+
+/* ================= SELECT ================= */
+.dark-mode select,
+.dark-mode option {
+    background-color: #1e293b;
+    color: #ffffff;
+}
+
+/* ================= BUTTON FIX ================= */
+.dark-mode .btn-outline-secondary {
+    color: #cbd5f5;
+    border-color: #64748b;
+}
+
+/* ================= COMMENT BOX ================= */
+.dark-mode .comment-box {
+    background-color: #1e293b !important;
+    color: #e2e8f0;
+    border: 1px solid #334155;
+}
+
+/* ================= TITLE ================= */
+.dark-mode .card-title {
+    color: #ffffff !important;
+}
+
+/* ================= NAVBAR STRUCTURE ================= */
+.navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* ================= THEME TOGGLE ================= */
+.theme-toggle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid #475569;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background-color: #1e293b;
+    transform: scale(1.1);
+}
+
+body:not(.dark-mode) .theme-toggle {
+    background-color: #ffffff;
+    border: 1px solid #cbd5f5;
+}
+
+/* ================= MOBILE FIX ================= */
+@media (max-width: 991px) {
+
+    .navbar-collapse {
+        background-color: #0f172a;
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+
+    .navbar-nav {
+        align-items: flex-start !important;
+    }
+}

@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="JSP-Project:war exploded">
+    <output-path>$PROJECT_DIR$/Techblog-Jsp-Servlet/src/main/webapp/WEB-INF</output-path>
+    <root id="root" />
+  </artifact>
+</component>

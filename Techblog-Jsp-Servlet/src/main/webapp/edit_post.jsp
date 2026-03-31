@@ -1,8 +1,7 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <%@ page import="com.techblog.entities.Post" %>
 <%@ page import="com.techblog.entities.User" %>
-
-<%@ include file="navbar.jsp" %>
 
 <%
     User currentUser = (User) session.getAttribute("currentUser");
@@ -21,39 +20,62 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Post | TechBlog</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
 
-<div class="page-container">
-    <div class="auth-container">
-        <h2>Edit Post</h2>
+<body class="bg-light">
 
-        <!-- Update Post -->
-        <form action="updatePost" method="post" class="auth-form">
+<!-- Navbar -->
+<%@ include file="navbar.jsp" %>
 
-            <!-- hidden post id -->
-            <input type="hidden" name="postId" value="<%= post.getId() %>">
+<!-- Main Container -->
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
 
-            <input
-                    type="text"
-                    name="title"
-                    placeholder="Post title"
-                    value="<%= post.getTitle().replace("\"","&quot;") %>"
-                    required
-            >
+            <div class="card shadow p-4">
+                <h3 class="mb-4 text-center">Edit Post</h3>
 
-            <textarea
-                    name="content"
-                    placeholder="Post content"
-                    required
-            ><%= post.getContent() %></textarea>
+                <form action="updatePost" method="post">
 
-            <button type="submit">Update Post</button>
-        </form>
+                    <!-- Hidden ID -->
+                    <input type="hidden" name="postId" value="<%= post.getId() %>">
+
+                    <!-- Title -->
+                    <div class="mb-3">
+                        <label class="form-label">Title</label>
+                        <input type="text" name="title" class="form-control"
+                               value="<%= post.getTitle().replace("\"","&quot;") %>" required>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="mb-3">
+                        <label class="form-label">Content</label>
+                        <textarea name="content" class="form-control" rows="6" required><%= post.getContent() %></textarea>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success">
+                            Update Post
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
     </div>
 </div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
